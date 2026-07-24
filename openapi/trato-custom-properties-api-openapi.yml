@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: TRATO Contract Contracts Custom Properties API
+  version: '2.0'
+  description: TRATO is an AI-powered Contract Lifecycle Management (CLM) and electronic signature platform. This OpenAPI description is generated from TRATO's public developer documentation (developer.trato.io) — it faithfully represents the documented Contracts and Templates operations, their paths, methods and the JWT bearer authentication. TRATO does not publish a machine-readable spec, so request/response schemas here reflect only fields documented in the reference.
+  contact:
+    name: TRATO API Support
+    url: https://developer.trato.io/
+  x-logo:
+    url: https://trato.io
+servers:
+- url: https://enterprise.api.trato.io
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Custom Properties
+  description: Attach custom metadata properties to a contract.
+paths:
+  /api/contracts/{contractID}/customproperties:
+    post:
+      tags:
+      - Custom Properties
+      operationId: createCustomProperty
+      summary: Create custom properties on a contract
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Custom property created.
+    get:
+      tags:
+      - Custom Properties
+      operationId: getCustomProperties
+      summary: Get the custom properties of a contract
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Custom properties.
+  /api/contracts/{contractID}/{propertyID}/customproperties:
+    put:
+      tags:
+      - Custom Properties
+      operationId: updateCustomProperty
+      summary: Update a custom property
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Custom property updated.
+    delete:
+      tags:
+      - Custom Properties
+      operationId: deleteCustomProperty
+      summary: Delete a custom property
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: propertyID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Custom property deleted.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token sent as `Authorization: Bearer {TOKEN}` on every call. Obtain the token from your TRATO profile security settings.'
+x-generated: '2026-07-21'
+x-method: generated
+x-source: https://developer.trato.io/contracts and https://developer.trato.io/templates (documented endpoints; TRATO publishes no machine-readable OpenAPI)

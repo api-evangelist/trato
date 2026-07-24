@@ -1,0 +1,128 @@
+openapi: 3.0.3
+info:
+  title: TRATO Contract Contracts Participants API
+  version: '2.0'
+  description: TRATO is an AI-powered Contract Lifecycle Management (CLM) and electronic signature platform. This OpenAPI description is generated from TRATO's public developer documentation (developer.trato.io) — it faithfully represents the documented Contracts and Templates operations, their paths, methods and the JWT bearer authentication. TRATO does not publish a machine-readable spec, so request/response schemas here reflect only fields documented in the reference.
+  contact:
+    name: TRATO API Support
+    url: https://developer.trato.io/
+  x-logo:
+    url: https://trato.io
+servers:
+- url: https://enterprise.api.trato.io
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Participants
+  description: Manage participants (signers) on a contract.
+paths:
+  /api/contract/variables/{contractID}/{participantID}:
+    post:
+      tags:
+      - Participants
+      operationId: setParticipantVariables
+      summary: Set or update variables for a participant
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: participantID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Variables updated.
+  /api/contract/participant/{contractID}/{participantID}:
+    get:
+      tags:
+      - Participants
+      operationId: getParticipant
+      summary: Get participant information
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: participantID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Participant information.
+    post:
+      tags:
+      - Participants
+      operationId: updateParticipant
+      summary: Update participant information
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: participantID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Participant updated.
+  /api/contract/attachments/{contractID}/{participantID}:
+    post:
+      tags:
+      - Participants
+      operationId: addParticipantAttachment
+      summary: Add an attachment to a participant
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: participantID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Attachment added.
+  /api/contracts/{contractID}/participants/{participantID}/change-email:
+    post:
+      tags:
+      - Participants
+      operationId: changeParticipantEmail
+      summary: Change a participant's email address
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: participantID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Email changed.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token sent as `Authorization: Bearer {TOKEN}` on every call. Obtain the token from your TRATO profile security settings.'
+x-generated: '2026-07-21'
+x-method: generated
+x-source: https://developer.trato.io/contracts and https://developer.trato.io/templates (documented endpoints; TRATO publishes no machine-readable OpenAPI)

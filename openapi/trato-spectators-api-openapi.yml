@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: TRATO Contract Contracts Spectators API
+  version: '2.0'
+  description: TRATO is an AI-powered Contract Lifecycle Management (CLM) and electronic signature platform. This OpenAPI description is generated from TRATO's public developer documentation (developer.trato.io) — it faithfully represents the documented Contracts and Templates operations, their paths, methods and the JWT bearer authentication. TRATO does not publish a machine-readable spec, so request/response schemas here reflect only fields documented in the reference.
+  contact:
+    name: TRATO API Support
+    url: https://developer.trato.io/
+  x-logo:
+    url: https://trato.io
+servers:
+- url: https://enterprise.api.trato.io
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Spectators
+  description: Manage read-only observers of a contract.
+paths:
+  /api/contracts/{contractID}/spectators:
+    get:
+      tags:
+      - Spectators
+      operationId: getSpectators
+      summary: Get the spectators of a contract
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Spectators.
+    post:
+      tags:
+      - Spectators
+      operationId: addSpectator
+      summary: Add a spectator to a contract
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Spectator added.
+  /api/contracts/{contractID}/spectators/{spectatorID}:
+    put:
+      tags:
+      - Spectators
+      operationId: updateSpectator
+      summary: Update a spectator
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: spectatorID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Spectator updated.
+    delete:
+      tags:
+      - Spectators
+      operationId: removeSpectator
+      summary: Remove a spectator
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: spectatorID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Spectator removed.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token sent as `Authorization: Bearer {TOKEN}` on every call. Obtain the token from your TRATO profile security settings.'
+x-generated: '2026-07-21'
+x-method: generated
+x-source: https://developer.trato.io/contracts and https://developer.trato.io/templates (documented endpoints; TRATO publishes no machine-readable OpenAPI)

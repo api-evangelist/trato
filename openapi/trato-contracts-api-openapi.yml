@@ -1,0 +1,323 @@
+openapi: 3.0.3
+info:
+  title: TRATO Contract Contracts API
+  version: '2.0'
+  description: TRATO is an AI-powered Contract Lifecycle Management (CLM) and electronic signature platform. This OpenAPI description is generated from TRATO's public developer documentation (developer.trato.io) — it faithfully represents the documented Contracts and Templates operations, their paths, methods and the JWT bearer authentication. TRATO does not publish a machine-readable spec, so request/response schemas here reflect only fields documented in the reference.
+  contact:
+    name: TRATO API Support
+    url: https://developer.trato.io/
+  x-logo:
+    url: https://trato.io
+servers:
+- url: https://enterprise.api.trato.io
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Contracts
+  description: Create, configure, send, sign and manage contracts.
+paths:
+  /api/create/contract:
+    post:
+      tags:
+      - Contracts
+      operationId: createContract
+      summary: Create a contract from a template or uploaded document
+      responses:
+        '200':
+          description: Contract created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateContractResponse'
+  /api/v2/create/contract:
+    post:
+      tags:
+      - Contracts
+      operationId: createContractV2
+      summary: Create a contract (v2) with a PDF or WORD document in one call
+      responses:
+        '200':
+          description: Contract created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateContractResponse'
+  /api/contract/status/{contractID}:
+    get:
+      tags:
+      - Contracts
+      operationId: getContractStatus
+      summary: Get the current status of a contract
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Contract status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractStatus'
+  /api/contract/configuration/{contractID}:
+    post:
+      tags:
+      - Contracts
+      operationId: configureContract
+      summary: Configure contract settings
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Configuration updated.
+  /api/contract/variables/{contractID}:
+    get:
+      tags:
+      - Contracts
+      operationId: getContractVariables
+      summary: Retrieve the variables of a contract
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Contract variables.
+  /api/contract/variables/{contractID}/{participantID}:
+    post:
+      tags:
+      - Contracts
+      operationId: setParticipantVariables
+      summary: Set or update variables for a participant
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: participantID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Variables updated.
+  /api/contract/send/{contractID}:
+    post:
+      tags:
+      - Contracts
+      operationId: sendContract
+      summary: Send a contract for signing
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Contract sent.
+  /api/contract/documents/{contractID}:
+    post:
+      tags:
+      - Contracts
+      operationId: getSignedDocuments
+      summary: Get the signed documents of a contract
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Signed documents.
+  /api/contracts/{contractId}/confidential-attachments:
+    post:
+      tags:
+      - Contracts
+      operationId: addConfidentialAttachment
+      summary: Add a confidential attachment to a contract
+      parameters:
+      - name: contractId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Confidential attachment added.
+  /api/contracts/{contractId}/confidential-attachments/{attachmentId}:
+    delete:
+      tags:
+      - Contracts
+      operationId: removeConfidentialAttachment
+      summary: Remove a confidential attachment
+      parameters:
+      - name: contractId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: attachmentId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Confidential attachment removed.
+  /api/list/contracts:
+    get:
+      tags:
+      - Contracts
+      operationId: listContracts
+      summary: List all contracts with filters
+      responses:
+        '200':
+          description: Array of contracts.
+  /api/contract/pending/{contractID}:
+    get:
+      tags:
+      - Contracts
+      operationId: remindPendingSigners
+      summary: Send a reminder to pending signers
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Reminder sent.
+  /api/contract/archive/{contractID}:
+    post:
+      tags:
+      - Contracts
+      operationId: archiveContract
+      summary: Archive a contract
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Contract archived.
+  /api/contract/cancel/{contractID}:
+    delete:
+      tags:
+      - Contracts
+      operationId: cancelContract
+      summary: Cancel a contract
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Contract cancelled.
+  /api/contract/finalize/{contractID}:
+    post:
+      tags:
+      - Contracts
+      operationId: finalizeContract
+      summary: Finalize a signed contract
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Contract finalized.
+  /api/contracts/{contractID}/validate/nom151:
+    post:
+      tags:
+      - Contracts
+      operationId: validateNom151
+      summary: Validate the contract against Mexican NOM-151
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: NOM-151 validation result.
+  /api/sign-url/renew:
+    post:
+      tags:
+      - Contracts
+      operationId: renewSignUrl
+      summary: Renew an expired signing link
+      responses:
+        '200':
+          description: Signing link renewed.
+  /api/contracts/{contractID}/package:
+    post:
+      tags:
+      - Contracts
+      operationId: downloadContractPackage
+      summary: Download the full contract package
+      parameters:
+      - name: contractID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Contract package.
+components:
+  schemas:
+    ContractStatus:
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          type: string
+          description: Contract state (e.g. AUTHORIZE, SIGNED, FINALIZED).
+        createdAt:
+          type: string
+          format: date-time
+        pdf:
+          type: string
+        signedAt:
+          type: string
+        externalId:
+          type: string
+    CreateContractResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        contractid:
+          type: string
+          description: Contract identifier (MongoDB ObjectId).
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token sent as `Authorization: Bearer {TOKEN}` on every call. Obtain the token from your TRATO profile security settings.'
+x-generated: '2026-07-21'
+x-method: generated
+x-source: https://developer.trato.io/contracts and https://developer.trato.io/templates (documented endpoints; TRATO publishes no machine-readable OpenAPI)

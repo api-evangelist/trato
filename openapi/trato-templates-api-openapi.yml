@@ -1,0 +1,71 @@
+openapi: 3.0.3
+info:
+  title: TRATO Contract Contracts Templates API
+  version: '2.0'
+  description: TRATO is an AI-powered Contract Lifecycle Management (CLM) and electronic signature platform. This OpenAPI description is generated from TRATO's public developer documentation (developer.trato.io) — it faithfully represents the documented Contracts and Templates operations, their paths, methods and the JWT bearer authentication. TRATO does not publish a machine-readable spec, so request/response schemas here reflect only fields documented in the reference.
+  contact:
+    name: TRATO API Support
+    url: https://developer.trato.io/
+  x-logo:
+    url: https://trato.io
+servers:
+- url: https://enterprise.api.trato.io
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Templates
+  description: List reusable contract templates.
+paths:
+  /api/list/templates:
+    get:
+      tags:
+      - Templates
+      operationId: listTemplates
+      summary: List contract templates
+      parameters:
+      - name: name
+        in: query
+        schema:
+          type: string
+        description: Filter by template name.
+      - name: dateStart
+        in: query
+        schema:
+          type: string
+        description: Minimum creation date.
+      - name: dateEnd
+        in: query
+        schema:
+          type: string
+        description: Maximum creation date.
+      responses:
+        '200':
+          description: Array of templates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'
+components:
+  schemas:
+    Template:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        templateId:
+          type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT bearer token sent as `Authorization: Bearer {TOKEN}` on every call. Obtain the token from your TRATO profile security settings.'
+x-generated: '2026-07-21'
+x-method: generated
+x-source: https://developer.trato.io/contracts and https://developer.trato.io/templates (documented endpoints; TRATO publishes no machine-readable OpenAPI)
