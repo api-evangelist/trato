@@ -1,0 +1,507 @@
+openapi: 3.0.3
+x-generated: '2026-07-21'
+x-method: generated
+x-source: https://developer.trato.io/contracts and https://developer.trato.io/templates (documented endpoints; TRATO publishes no machine-readable OpenAPI)
+info:
+  title: TRATO Contract API
+  version: '2.0'
+  description: >-
+    TRATO is an AI-powered Contract Lifecycle Management (CLM) and electronic
+    signature platform. This OpenAPI description is generated from TRATO's public
+    developer documentation (developer.trato.io) — it faithfully represents the
+    documented Contracts and Templates operations, their paths, methods and the
+    JWT bearer authentication. TRATO does not publish a machine-readable spec, so
+    request/response schemas here reflect only fields documented in the reference.
+  contact:
+    name: TRATO API Support
+    url: https://developer.trato.io/
+  x-logo:
+    url: https://trato.io
+servers:
+  - url: https://enterprise.api.trato.io
+    description: Production
+tags:
+  - name: Contracts
+    description: Create, configure, send, sign and manage contracts.
+  - name: Templates
+    description: List reusable contract templates.
+  - name: Participants
+    description: Manage participants (signers) on a contract.
+  - name: Custom Properties
+    description: Attach custom metadata properties to a contract.
+  - name: Spectators
+    description: Manage read-only observers of a contract.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        JWT bearer token sent as `Authorization: Bearer {TOKEN}` on every call.
+        Obtain the token from your TRATO profile security settings.
+  schemas:
+    ContractStatus:
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          type: string
+          description: Contract state (e.g. AUTHORIZE, SIGNED, FINALIZED).
+        createdAt:
+          type: string
+          format: date-time
+        pdf:
+          type: string
+        signedAt:
+          type: string
+        externalId:
+          type: string
+    CreateContractResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        contractid:
+          type: string
+          description: Contract identifier (MongoDB ObjectId).
+    Template:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+        templateId:
+          type: integer
+    Error:
+      type: object
+      description: TRATO error envelope.
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+security:
+  - bearerAuth: []
+paths:
+  /api/create/contract:
+    post:
+      tags: [Contracts]
+      operationId: createContract
+      summary: Create a contract from a template or uploaded document
+      responses:
+        '200':
+          description: Contract created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateContractResponse'
+  /api/v2/create/contract:
+    post:
+      tags: [Contracts]
+      operationId: createContractV2
+      summary: Create a contract (v2) with a PDF or WORD document in one call
+      responses:
+        '200':
+          description: Contract created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateContractResponse'
+  /api/contract/status/{contractID}:
+    get:
+      tags: [Contracts]
+      operationId: getContractStatus
+      summary: Get the current status of a contract
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Contract status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractStatus'
+  /api/contract/configuration/{contractID}:
+    post:
+      tags: [Contracts]
+      operationId: configureContract
+      summary: Configure contract settings
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Configuration updated. }
+  /api/contract/variables/{contractID}:
+    get:
+      tags: [Contracts]
+      operationId: getContractVariables
+      summary: Retrieve the variables of a contract
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Contract variables. }
+  /api/contract/variables/{contractID}/{participantID}:
+    post:
+      tags: [Contracts, Participants]
+      operationId: setParticipantVariables
+      summary: Set or update variables for a participant
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+        - name: participantID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Variables updated. }
+  /api/contract/participant/{contractID}/{participantID}:
+    get:
+      tags: [Participants]
+      operationId: getParticipant
+      summary: Get participant information
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+        - name: participantID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Participant information. }
+    post:
+      tags: [Participants]
+      operationId: updateParticipant
+      summary: Update participant information
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+        - name: participantID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Participant updated. }
+  /api/contract/attachments/{contractID}/{participantID}:
+    post:
+      tags: [Participants]
+      operationId: addParticipantAttachment
+      summary: Add an attachment to a participant
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+        - name: participantID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Attachment added. }
+  /api/contract/send/{contractID}:
+    post:
+      tags: [Contracts]
+      operationId: sendContract
+      summary: Send a contract for signing
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Contract sent. }
+  /api/contract/documents/{contractID}:
+    post:
+      tags: [Contracts]
+      operationId: getSignedDocuments
+      summary: Get the signed documents of a contract
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Signed documents. }
+  /api/contracts/{contractId}/confidential-attachments:
+    post:
+      tags: [Contracts]
+      operationId: addConfidentialAttachment
+      summary: Add a confidential attachment to a contract
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Confidential attachment added. }
+  /api/contracts/{contractId}/confidential-attachments/{attachmentId}:
+    delete:
+      tags: [Contracts]
+      operationId: removeConfidentialAttachment
+      summary: Remove a confidential attachment
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          schema: { type: string }
+        - name: attachmentId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Confidential attachment removed. }
+  /api/list/contracts:
+    get:
+      tags: [Contracts]
+      operationId: listContracts
+      summary: List all contracts with filters
+      responses:
+        '200': { description: Array of contracts. }
+  /api/contract/pending/{contractID}:
+    get:
+      tags: [Contracts]
+      operationId: remindPendingSigners
+      summary: Send a reminder to pending signers
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Reminder sent. }
+  /api/contract/archive/{contractID}:
+    post:
+      tags: [Contracts]
+      operationId: archiveContract
+      summary: Archive a contract
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Contract archived. }
+  /api/contract/cancel/{contractID}:
+    delete:
+      tags: [Contracts]
+      operationId: cancelContract
+      summary: Cancel a contract
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Contract cancelled. }
+  /api/contract/finalize/{contractID}:
+    post:
+      tags: [Contracts]
+      operationId: finalizeContract
+      summary: Finalize a signed contract
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Contract finalized. }
+  /api/contracts/{contractID}/validate/nom151:
+    post:
+      tags: [Contracts]
+      operationId: validateNom151
+      summary: Validate the contract against Mexican NOM-151
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: NOM-151 validation result. }
+  /api/contracts/{contractID}/customproperties:
+    post:
+      tags: [Custom Properties]
+      operationId: createCustomProperty
+      summary: Create custom properties on a contract
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Custom property created. }
+    get:
+      tags: [Custom Properties]
+      operationId: getCustomProperties
+      summary: Get the custom properties of a contract
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Custom properties. }
+  /api/contracts/{contractID}/{propertyID}/customproperties:
+    put:
+      tags: [Custom Properties]
+      operationId: updateCustomProperty
+      summary: Update a custom property
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+        - name: propertyID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Custom property updated. }
+    delete:
+      tags: [Custom Properties]
+      operationId: deleteCustomProperty
+      summary: Delete a custom property
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+        - name: propertyID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Custom property deleted. }
+  /api/contracts/{contractID}/spectators:
+    get:
+      tags: [Spectators]
+      operationId: getSpectators
+      summary: Get the spectators of a contract
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Spectators. }
+    post:
+      tags: [Spectators]
+      operationId: addSpectator
+      summary: Add a spectator to a contract
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Spectator added. }
+  /api/contracts/{contractID}/spectators/{spectatorID}:
+    put:
+      tags: [Spectators]
+      operationId: updateSpectator
+      summary: Update a spectator
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+        - name: spectatorID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Spectator updated. }
+    delete:
+      tags: [Spectators]
+      operationId: removeSpectator
+      summary: Remove a spectator
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+        - name: spectatorID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Spectator removed. }
+  /api/sign-url/renew:
+    post:
+      tags: [Contracts]
+      operationId: renewSignUrl
+      summary: Renew an expired signing link
+      responses:
+        '200': { description: Signing link renewed. }
+  /api/contracts/{contractID}/participants/{participantID}/change-email:
+    post:
+      tags: [Participants]
+      operationId: changeParticipantEmail
+      summary: Change a participant's email address
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+        - name: participantID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Email changed. }
+  /api/contracts/{contractID}/package:
+    post:
+      tags: [Contracts]
+      operationId: downloadContractPackage
+      summary: Download the full contract package
+      parameters:
+        - name: contractID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Contract package. }
+  /api/list/templates:
+    get:
+      tags: [Templates]
+      operationId: listTemplates
+      summary: List contract templates
+      parameters:
+        - name: name
+          in: query
+          schema: { type: string }
+          description: Filter by template name.
+        - name: dateStart
+          in: query
+          schema: { type: string }
+          description: Minimum creation date.
+        - name: dateEnd
+          in: query
+          schema: { type: string }
+          description: Maximum creation date.
+      responses:
+        '200':
+          description: Array of templates.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template'

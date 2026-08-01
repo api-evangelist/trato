@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.trato.io/ + https://status.trato.io
+versioning:
+  scheme: uri-path
+  current: v2
+  notes: Newer operations are exposed under /api/v2/ (e.g. /api/v2/create/contract); v1 paths remain.
+  docs: https://developer.trato.io/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No formal deprecation/sunset policy is published.
+status_page: https://status.trato.io
+status_page_tool: Upptime (github.com/contratosapp/upptime)
+sla:
+  url: null
+  uptime_target: null
+deprecated_operations: []
+notes: >-
+  Status is monitored publicly via an Upptime page. No published SLA numbers or
+  formal deprecation policy were found.

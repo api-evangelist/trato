@@ -1,0 +1,37 @@
+# TRATO
+
+> TRATO is an AI-powered Contract Lifecycle Management (CLM) and electronic
+> signature platform. It centralizes contract intake, template-based drafting,
+> approval workflows and secure e-signatures, with multi-jurisdiction support
+> (Mexico, Spain, Germany) and Mexican NOM-151 advanced e-signature validation.
+> The API authenticates with a JWT bearer token and is served from
+> https://enterprise.api.trato.io.
+
+## API
+
+- [Developer documentation / API reference](https://developer.trato.io/): Contracts, Templates, Milestones and Webhooks reference.
+- [Contracts endpoints](https://developer.trato.io/contracts): create, configure, send, sign, finalize, archive and cancel contracts.
+- API base URL: https://enterprise.api.trato.io
+- Authentication: JWT bearer token in the Authorization header.
+
+## Specs
+
+- [OpenAPI (generated)](openapi/trato-openapi.yml): 31 documented Contract and Template operations.
+- [Webhooks / AsyncAPI](asyncapi/trato-webhooks-asyncapi.yml): six contract & milestone events.
+
+## Docs
+
+- [Authentication profile](authentication/trato-authentication.yml)
+- [API conventions](conventions/trato-conventions.yml)
+- [Data model](data-model/trato-data-model.yml)
+- [Sandbox / test environment](sandbox/trato-sandbox.yml)
+- [Lifecycle & status](lifecycle/trato-lifecycle.yml)
+- [Agent skill: create and send a contract](skills/trato-create-and-send-contract.md)
+
+## Product
+
+- [TRATO website](https://trato.io)
+- [Blog](https://blog.trato.io)
+- [Status](https://status.trato.io)
+- [Application / sign in](https://clm.trato.io/login)
+- [GitHub](https://github.com/contratosapp)

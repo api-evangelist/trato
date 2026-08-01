@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.trato.io/
+authentication:
+  style: jwt-bearer
+  header: Authorization
+  format: "Bearer {TOKEN}"
+  ref: authentication/trato-authentication.yml
+error_envelope:
+  style: success-flag
+  description: >-
+    Responses carry a boolean `success` field; on failure `success` is false and
+    a message describes the problem. Not RFC 9457 problem+json.
+  fields: [success, message]
+  ref: errors/trato-problem-types.yml
+identifiers:
+  contract_id: MongoDB ObjectId (24-hex), field `contractid`
+  external_id: caller-supplied `externalId` echoed on status and webhook payloads
+  template_id: integer `templateId`
+pagination:
+  style: filter-based
+  notes: >-
+    List endpoints (list/contracts, list/templates) accept filter query params
+    such as name, dateStart and dateEnd rather than cursor/offset paging.
+versioning:
+  scheme: uri-path
+  notes: Newer operations are exposed under /api/v2/ (e.g. /api/v2/create/contract).
+idempotency:
+  supported: false
+  notes: >-
+    TRATO does not document an idempotency-key header or mechanism. Callers can
+    use `externalId` as a client reference but it is not documented as a
+    de-duplication key.
+webhooks:
+  supported: true
+  verification_header: X-Trato-Secret
+  configured_in: user profile (per subscribed event)
+  ref: asyncapi/trato-webhooks-asyncapi.yml
+compliance:
+  nom151: Mexican NOM-151 advanced electronic signature validation supported (validateNom151).
+  jurisdictions: [Mexico, Spain, Germany]

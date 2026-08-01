@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/trato-openapi.yml + https://developer.trato.io/
+format: success-flag
+envelope:
+  description: >-
+    TRATO returns a JSON body with a boolean `success` field. On error,
+    `success` is false and a `message` field describes the problem. TRATO does
+    not publish an RFC 9457 problem+json catalog; the developer docs include a
+    Troubleshooting page but no enumerated error-code registry.
+  fields:
+    success: boolean (false on error)
+    message: human-readable description
+problems:
+  - status: 401
+    title: Unauthorized
+    detail: Missing or invalid JWT bearer token in the Authorization header.
+    remediation: "Send a valid `Authorization: Bearer {TOKEN}` from your profile security settings."
+  - status: 404
+    title: Not found
+    detail: The referenced contract, participant, template or property does not exist.
+  - status: 400
+    title: Bad request
+    detail: Request payload is malformed or a required field is missing.
+notes: >-
+  Statuses are derived from the documented authentication requirement and REST
+  conventions of the endpoints; TRATO does not publish a machine-readable error
+  schema, so specific codes/titles beyond these are not asserted.

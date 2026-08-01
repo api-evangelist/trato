@@ -1,7 +1,16 @@
 aid: trato
 name: Trato
-description: Trato is a company surfaced as a portfolio company of 500-global and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  TRATO is an AI-powered Contract Lifecycle Management (CLM) and electronic
+  signature platform used by more than 180,000 users to centralize, draft,
+  approve, sign and track contracts. It offers template-based smart drafting,
+  automated approval routing, real-time contract tracking, and secure
+  e-signatures, with multi-jurisdiction legal expertise across Mexico, Spain and
+  Germany and support for Mexican NOM-151 advanced electronic signatures. TRATO
+  exposes a JWT-authenticated REST API (Contracts, Templates, Milestones) and
+  webhook events for programmatic contract generation and integration with CRM,
+  document management and payment systems. Founded in 2014 in Mexico City and
+  backed by 500 Global.
 url: https://raw.githubusercontent.com/api-evangelist/trato/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,12 +18,112 @@ x-backed-by:
 - 500-global
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Contract Management
+- Contract Lifecycle Management
+- Electronic Signature
+- Legaltech
+- Document Management
+- Workflow Automation
+- Legal
+image: https://trato.io
+apis:
+- aid: trato:trato-contracts-api
+  name: Trato Contracts API
+  description: Create, configure, send, sign and manage contracts.
+  humanURL: https://developer.trato.io/
+  baseURL: https://enterprise.api.trato.io
+  tags:
+  - Contracts
+  properties:
+  - type: OpenAPI
+    url: openapi/trato-contracts-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/trato-webhooks-asyncapi.yml
+  - type: Documentation
+    url: https://developer.trato.io/
+  - type: Authentication
+    url: authentication/trato-authentication.yml
+- aid: trato:trato-custom-properties-api
+  name: Trato Custom Properties API
+  description: Attach custom metadata properties to a contract.
+  humanURL: https://developer.trato.io/
+  baseURL: https://enterprise.api.trato.io
+  tags:
+  - Custom Properties
+  properties:
+  - type: OpenAPI
+    url: openapi/trato-custom-properties-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/trato-webhooks-asyncapi.yml
+  - type: Documentation
+    url: https://developer.trato.io/
+  - type: Authentication
+    url: authentication/trato-authentication.yml
+- aid: trato:trato-participants-api
+  name: Trato Participants API
+  description: Manage participants (signers) on a contract.
+  humanURL: https://developer.trato.io/
+  baseURL: https://enterprise.api.trato.io
+  tags:
+  - Participants
+  properties:
+  - type: OpenAPI
+    url: openapi/trato-participants-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/trato-webhooks-asyncapi.yml
+  - type: Documentation
+    url: https://developer.trato.io/
+  - type: Authentication
+    url: authentication/trato-authentication.yml
+- aid: trato:trato-spectators-api
+  name: Trato Spectators API
+  description: Manage read-only observers of a contract.
+  humanURL: https://developer.trato.io/
+  baseURL: https://enterprise.api.trato.io
+  tags:
+  - Spectators
+  properties:
+  - type: OpenAPI
+    url: openapi/trato-spectators-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/trato-webhooks-asyncapi.yml
+  - type: Documentation
+    url: https://developer.trato.io/
+  - type: Authentication
+    url: authentication/trato-authentication.yml
+- aid: trato:trato-templates-api
+  name: Trato Templates API
+  description: List reusable contract templates.
+  humanURL: https://developer.trato.io/
+  baseURL: https://enterprise.api.trato.io
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/trato-templates-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/trato-webhooks-asyncapi.yml
+  - type: Documentation
+    url: https://developer.trato.io/
+  - type: Authentication
+    url: authentication/trato-authentication.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +132,64 @@ maintainers:
 common:
 - type: Website
   url: https://trato.io
+- type: DeveloperPortal
+  url: https://developer.trato.io/
+- type: Documentation
+  url: https://developer.trato.io/
+- type: APIReference
+  url: https://developer.trato.io/contracts
+- type: GettingStarted
+  url: https://developer.trato.io/
+- type: Blog
+  url: https://blog.trato.io
+- type: StatusPage
+  url: https://status.trato.io
+- type: GitHubOrganization
+  url: https://github.com/contratosapp
+- type: Support
+  url: https://trato.io/contact
+- type: Pricing
+  url: https://trato.io/#pricing
+- type: Login
+  url: https://clm.trato.io/login
+- type: TermsOfService
+  url: https://trato.io/terms-of-use
+- type: PrivacyPolicy
+  url: https://trato.io/privacy-policy
+- type: LinkedIn
+  url: https://www.linkedin.com/company/tratolegaltech/
+- type: Authentication
+  url: authentication/trato-authentication.yml
+- type: Webhooks
+  url: asyncapi/trato-webhooks-asyncapi.yml
+- type: AsyncAPI
+  url: asyncapi/trato-webhooks-asyncapi.yml
+- type: MCPServer
+  url: mcp/trato-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Sandbox
+  url: sandbox/trato-sandbox.yml
+- type: Conventions
+  url: conventions/trato-conventions.yml
+- type: ErrorCatalog
+  url: errors/trato-problem-types.yml
+- type: DataModel
+  url: data-model/trato-data-model.yml
+- type: Lifecycle
+  url: lifecycle/trato-lifecycle.yml
+- type: Conformance
+  url: conformance/trato-conformance.yml
+- type: DomainSecurity
+  url: security/trato-domain-security.yml
+- type: WellKnown
+  url: well-known/trato-well-known.yml
+- type: LLMsTxt
+  url: llms/trato-llms.txt
+- type: Overlay
+  url: overlays/trato-openapi-overlay.yaml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

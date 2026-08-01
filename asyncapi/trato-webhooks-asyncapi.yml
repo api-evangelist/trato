@@ -1,0 +1,125 @@
+asyncapi: 2.6.0
+x-generated: '2026-07-21'
+x-method: searched
+x-source: https://developer.trato.io/webhooks
+info:
+  title: TRATO Webhooks
+  version: '1.0'
+  description: >-
+    TRATO delivers contract and milestone lifecycle events to subscriber URLs as
+    HTTP POST callbacks. Webhooks are configured in the user profile per event
+    type. Each request carries an `X-Trato-Secret` header holding the secret
+    string provided by TRATO so receivers can verify authenticity. Payloads are
+    JSON with common fields (contractid, name, event, externalId) plus
+    event-specific fields.
+defaultContentType: application/json
+channels:
+  contract/signed:
+    subscribe:
+      operationId: onSigned
+      summary: One participant has signed the contract.
+      message:
+        $ref: '#/components/messages/signed'
+  contract/signed-all:
+    subscribe:
+      operationId: onSignedAll
+      summary: All participants have completed signing.
+      message:
+        $ref: '#/components/messages/signedAll'
+  contract/document-finalized:
+    subscribe:
+      operationId: onDocumentFinalized
+      summary: The contract has reached finalized status.
+      message:
+        $ref: '#/components/messages/documentFinalized'
+  contract/document-removed:
+    subscribe:
+      operationId: onDocumentRemoved
+      summary: The contract has been deleted.
+      message:
+        $ref: '#/components/messages/documentRemoved'
+  contract/milestone-completed:
+    subscribe:
+      operationId: onMilestoneCompleted
+      summary: A single milestone reached completed status.
+      message:
+        $ref: '#/components/messages/milestoneCompleted'
+  contract/all-milestones-completed:
+    subscribe:
+      operationId: onAllMilestonesCompleted
+      summary: All milestones on the contract are completed.
+      message:
+        $ref: '#/components/messages/allMilestonesCompleted'
+components:
+  messageTraits:
+    tratoBase:
+      headers:
+        type: object
+        properties:
+          X-Trato-Secret:
+            type: string
+            description: Secret string provided by TRATO to verify authenticity.
+  schemas:
+    base:
+      type: object
+      properties:
+        contractid:
+          type: string
+          description: Contract identifier (MongoDB ObjectId).
+        name:
+          type: string
+        event:
+          type: string
+        externalId:
+          type: string
+  messages:
+    signed:
+      name: signed
+      traits: [{ $ref: '#/components/messageTraits/tratoBase' }]
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/base'
+          - type: object
+            properties:
+              signedAt: { type: string, format: date-time }
+    signedAll:
+      name: signed-all
+      traits: [{ $ref: '#/components/messageTraits/tratoBase' }]
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/base'
+          - type: object
+            properties:
+              signedAt: { type: string, format: date-time }
+    documentFinalized:
+      name: document-finalized
+      traits: [{ $ref: '#/components/messageTraits/tratoBase' }]
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/base'
+          - type: object
+            properties:
+              finalizedAt: { type: string, format: date-time }
+    documentRemoved:
+      name: document-removed
+      traits: [{ $ref: '#/components/messageTraits/tratoBase' }]
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/base'
+          - type: object
+            properties:
+              deletedAt: { type: string, format: date-time }
+    milestoneCompleted:
+      name: milestone-completed
+      traits: [{ $ref: '#/components/messageTraits/tratoBase' }]
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/base'
+          - type: object
+            properties:
+              milestoneId: { type: string }
+    allMilestonesCompleted:
+      name: all-milestones-completed
+      traits: [{ $ref: '#/components/messageTraits/tratoBase' }]
+      payload:
+        $ref: '#/components/schemas/base'

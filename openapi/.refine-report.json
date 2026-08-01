@@ -1,0 +1,22 @@
+{
+  "provider": "trato",
+  "sources": [
+    "trato-contracts-api-openapi.yml",
+    "trato-custom-properties-api-openapi.yml",
+    "trato-participants-api-openapi.yml",
+    "trato-spectators-api-openapi.yml",
+    "trato-templates-api-openapi.yml"
+  ],
+  "outputs": [
+    "trato-contracts-api-openapi.yml",
+    "trato-custom-properties-api-openapi.yml",
+    "trato-participants-api-openapi.yml",
+    "trato-spectators-api-openapi.yml",
+    "trato-templates-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,57 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/trato-openapi.yml + https://developer.trato.io/
+entities:
+  - name: Template
+    id: templateId (integer)
+    description: Reusable base document from which contracts are created.
+  - name: Contract
+    id: contractid (MongoDB ObjectId)
+    description: Personalized document with a status lifecycle (AUTHORIZE, SIGNED, FINALIZED).
+    fields: [name, status, createdAt, pdf, signedAt, externalId]
+  - name: Participant
+    id: participantID
+    description: Individual or entity that signs or is party to a contract.
+  - name: Variable
+    description: Customizable field populated per contract/participant.
+  - name: Milestone
+    id: milestoneId
+    description: Trackable checkpoint within a contract; drives milestone webhook events.
+  - name: CustomProperty
+    id: propertyID
+    description: Custom metadata property attached to a contract.
+  - name: Spectator
+    id: spectatorID
+    description: Read-only observer of a contract.
+  - name: Attachment
+    id: attachmentId
+    description: File attached to a participant or contract (incl. confidential attachments).
+relationships:
+  - from: Contract
+    to: Template
+    type: belongs_to
+    via: created-from template
+  - from: Contract
+    to: Participant
+    type: has_many
+    via: participantID
+  - from: Participant
+    to: Variable
+    type: has_many
+    via: variables
+  - from: Contract
+    to: Milestone
+    type: has_many
+    via: milestoneId
+  - from: Contract
+    to: CustomProperty
+    type: has_many
+    via: propertyID
+  - from: Contract
+    to: Spectator
+    type: has_many
+    via: spectatorID
+  - from: Participant
+    to: Attachment
+    type: has_many
+    via: attachmentId

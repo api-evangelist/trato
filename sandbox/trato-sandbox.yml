@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.trato.io/
+environments:
+  - name: test
+    host: https://clm-test.trato.io
+    description: >-
+      TRATO test/CLM environment. API tokens for development are obtained from
+      the profile security page in this environment.
+    api_key_location: https://clm-test.trato.io/profile?menu=profile-security
+  - name: production
+    api_host: https://enterprise.api.trato.io
+    app_host: https://clm.trato.io
+test_values: []
+notes: >-
+  TRATO documents obtaining an API token from the profile security settings of
+  the clm-test environment for development. No published magic/test contract
+  identifiers, cards or fixtures — none are invented here.

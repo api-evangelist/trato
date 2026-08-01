@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: live probes of TRATO hosts
+hosts:
+  - host: https://enterprise.api.trato.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+  - host: https://trato.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+  - host: https://developer.trato.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+notes: >-
+  No /.well-known discovery documents are published. TRATO uses JWT bearer auth
+  issued from the account profile (no OIDC/OAuth authorization-server metadata).

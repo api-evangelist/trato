@@ -1,0 +1,8 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/trato-openapi.yml
+skills:
+  - file: trato-create-and-send-contract.md
+    name: Create and send a TRATO contract for signature
+    api: openapi/trato-openapi.yml
+    operations: [createContractV2, listTemplates, setParticipantVariables, sendContract, getContractStatus, getSignedDocuments]

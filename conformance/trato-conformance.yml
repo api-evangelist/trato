@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/trato-openapi.yml + https://developer.trato.io/ + https://trato.io/
+standards:
+  - id: nom-151
+    conforms: true
+    evidence: >-
+      Dedicated validateNom151 operation and documented NOM-151 (Mexican
+      advanced electronic signature / data preservation) support.
+  - id: eidas
+    conforms: partial
+    evidence: >-
+      TRATO operates in Spain and Germany with local e-signature expertise;
+      eIDAS alignment is implied by EU jurisdiction support but not asserted
+      with a published certificate.
+  - id: oauth2
+    conforms: false
+    evidence: Authentication is JWT bearer issued from the profile, not OAuth2.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a `success` boolean envelope, not application/problem+json.
+  - id: jwt
+    conforms: true
+    evidence: API bearer tokens are JWTs (Authorization Bearer).
+  - id: webhooks
+    conforms: true
+    evidence: HTTP callback events with X-Trato-Secret verification header.
+notes: >-
+  Derived/asserted from documentation. TRATO publishes an Information Security
+  Policy (https://trato.io/politica-de-la-seguridad-de-la-informacion) but no
+  named third-party certification (SOC 2 / ISO 27001) was found, so no
+  Compliance pointer is emitted.
