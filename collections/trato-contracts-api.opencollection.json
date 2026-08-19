@@ -1,0 +1,330 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TRATO Contract Contracts API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contracts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a contract from a template or uploaded document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/create/contract"
+          },
+          "docs": "Create a contract from a template or uploaded document"
+        },
+        {
+          "info": {
+            "name": "Create a contract (v2) with a PDF or WORD document in one call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/v2/create/contract"
+          },
+          "docs": "Create a contract (v2) with a PDF or WORD document in one call"
+        },
+        {
+          "info": {
+            "name": "Get the current status of a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://enterprise.api.trato.io/api/contract/status/:contractID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the current status of a contract"
+        },
+        {
+          "info": {
+            "name": "Configure contract settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contract/configuration/:contractID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Configure contract settings"
+        },
+        {
+          "info": {
+            "name": "Retrieve the variables of a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://enterprise.api.trato.io/api/contract/variables/:contractID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the variables of a contract"
+        },
+        {
+          "info": {
+            "name": "Set or update variables for a participant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contract/variables/:contractID/:participantID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "participantID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Set or update variables for a participant"
+        },
+        {
+          "info": {
+            "name": "Send a contract for signing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contract/send/:contractID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send a contract for signing"
+        },
+        {
+          "info": {
+            "name": "Get the signed documents of a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contract/documents/:contractID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the signed documents of a contract"
+        },
+        {
+          "info": {
+            "name": "Add a confidential attachment to a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contracts/:contractId/confidential-attachments",
+            "params": [
+              {
+                "name": "contractId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Add a confidential attachment to a contract"
+        },
+        {
+          "info": {
+            "name": "Remove a confidential attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://enterprise.api.trato.io/api/contracts/:contractId/confidential-attachments/:attachmentId",
+            "params": [
+              {
+                "name": "contractId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "attachmentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a confidential attachment"
+        },
+        {
+          "info": {
+            "name": "List all contracts with filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://enterprise.api.trato.io/api/list/contracts"
+          },
+          "docs": "List all contracts with filters"
+        },
+        {
+          "info": {
+            "name": "Send a reminder to pending signers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://enterprise.api.trato.io/api/contract/pending/:contractID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send a reminder to pending signers"
+        },
+        {
+          "info": {
+            "name": "Archive a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contract/archive/:contractID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Archive a contract"
+        },
+        {
+          "info": {
+            "name": "Cancel a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://enterprise.api.trato.io/api/contract/cancel/:contractID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a contract"
+        },
+        {
+          "info": {
+            "name": "Finalize a signed contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contract/finalize/:contractID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Finalize a signed contract"
+        },
+        {
+          "info": {
+            "name": "Validate the contract against Mexican NOM-151",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contracts/:contractID/validate/nom151",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Validate the contract against Mexican NOM-151"
+        },
+        {
+          "info": {
+            "name": "Renew an expired signing link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/sign-url/renew"
+          },
+          "docs": "Renew an expired signing link"
+        },
+        {
+          "info": {
+            "name": "Download the full contract package",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contracts/:contractID/package",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download the full contract package"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

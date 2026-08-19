@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TRATO Contract Contracts Custom Properties API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Properties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the custom properties of a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://enterprise.api.trato.io/api/contracts/:contractID/customproperties",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the custom properties of a contract"
+        },
+        {
+          "info": {
+            "name": "Create custom properties on a contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contracts/:contractID/customproperties",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create custom properties on a contract"
+        },
+        {
+          "info": {
+            "name": "Update a custom property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://enterprise.api.trato.io/api/contracts/:contractID/:propertyID/customproperties",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "propertyID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a custom property"
+        },
+        {
+          "info": {
+            "name": "Delete a custom property",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://enterprise.api.trato.io/api/contracts/:contractID/:propertyID/customproperties",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "propertyID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a custom property"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

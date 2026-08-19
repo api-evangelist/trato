@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TRATO Contract Contracts Participants API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Participants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Set or update variables for a participant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contract/variables/:contractID/:participantID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "participantID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Set or update variables for a participant"
+        },
+        {
+          "info": {
+            "name": "Get participant information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://enterprise.api.trato.io/api/contract/participant/:contractID/:participantID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "participantID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get participant information"
+        },
+        {
+          "info": {
+            "name": "Update participant information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contract/participant/:contractID/:participantID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "participantID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update participant information"
+        },
+        {
+          "info": {
+            "name": "Add an attachment to a participant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contract/attachments/:contractID/:participantID",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "participantID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Add an attachment to a participant"
+        },
+        {
+          "info": {
+            "name": "Change a participant's email address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://enterprise.api.trato.io/api/contracts/:contractID/participants/:participantID/change-email",
+            "params": [
+              {
+                "name": "contractID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "participantID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Change a participant's email address"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

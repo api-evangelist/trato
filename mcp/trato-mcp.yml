@@ -6,38 +6,43 @@ server:
   name: trato
   transport: http
   url: null
-notes: >-
-  TRATO publishes no official hosted/remote MCP server. This is a candidate tool
-  list derived from the documented Contract and Template operations so an agent
-  could drive TRATO's CLM API. Not an official TRATO manifest.
+notes: TRATO publishes no official hosted/remote MCP server. This is a candidate tool list derived from
+  the documented Contract and Template operations so an agent could drive TRATO's CLM API. Not an official
+  TRATO manifest.
 tools:
-  - name: create_contract
-    description: Create a contract from a template or uploaded document.
-    source_operation: openapi/trato-openapi.yml#createContractV2
-  - name: get_contract_status
-    description: Get the current status of a contract.
-    source_operation: openapi/trato-openapi.yml#getContractStatus
-  - name: list_contracts
-    description: List contracts with filters.
-    source_operation: openapi/trato-openapi.yml#listContracts
-  - name: send_contract
-    description: Send a contract for signing.
-    source_operation: openapi/trato-openapi.yml#sendContract
-  - name: get_signed_documents
-    description: Retrieve the signed documents of a contract.
-    source_operation: openapi/trato-openapi.yml#getSignedDocuments
-  - name: remind_pending_signers
-    description: Send a reminder to pending signers.
-    source_operation: openapi/trato-openapi.yml#remindPendingSigners
-  - name: finalize_contract
-    description: Finalize a signed contract.
-    source_operation: openapi/trato-openapi.yml#finalizeContract
-  - name: cancel_contract
-    description: Cancel a contract.
-    source_operation: openapi/trato-openapi.yml#cancelContract
-  - name: list_templates
-    description: List contract templates.
-    source_operation: openapi/trato-openapi.yml#listTemplates
-  - name: validate_nom151
-    description: Validate a contract against Mexican NOM-151.
-    source_operation: openapi/trato-openapi.yml#validateNom151
+- name: create_contract
+  description: Create a contract from a template or uploaded document.
+  source_operation: openapi/trato-openapi.yml#createContractV2
+- name: get_contract_status
+  description: Get the current status of a contract.
+  source_operation: openapi/trato-openapi.yml#getContractStatus
+- name: list_contracts
+  description: List contracts with filters.
+  source_operation: openapi/trato-openapi.yml#listContracts
+- name: send_contract
+  description: Send a contract for signing.
+  source_operation: openapi/trato-openapi.yml#sendContract
+- name: get_signed_documents
+  description: Retrieve the signed documents of a contract.
+  source_operation: openapi/trato-openapi.yml#getSignedDocuments
+- name: remind_pending_signers
+  description: Send a reminder to pending signers.
+  source_operation: openapi/trato-openapi.yml#remindPendingSigners
+- name: finalize_contract
+  description: Finalize a signed contract.
+  source_operation: openapi/trato-openapi.yml#finalizeContract
+- name: cancel_contract
+  description: Cancel a contract.
+  source_operation: openapi/trato-openapi.yml#cancelContract
+- name: list_templates
+  description: List contract templates.
+  source_operation: openapi/trato-openapi.yml#listTemplates
+- name: validate_nom151
+  description: Validate a contract against Mexican NOM-151.
+  source_operation: openapi/trato-openapi.yml#validateNom151
+deployment:
+  mode: none
+  verified: derived
+  tools: 10
+  checked: '2026-08-12'
+  source: catalog MCP census

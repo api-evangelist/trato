@@ -1,0 +1,152 @@
+{
+  "item": [
+    {
+      "id": "aeb57be4-556c-40fe-a3c5-1bbd114b6b5a",
+      "name": "Templates",
+      "description": {
+        "content": "List reusable contract templates.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2c51954a-54e9-401d-a4d0-40519ea13efe",
+          "name": "List contract templates",
+          "request": {
+            "name": "List contract templates",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "list",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by template name."
+                },
+                {
+                  "disabled": false,
+                  "key": "dateStart",
+                  "value": "<string>",
+                  "description": "Minimum creation date."
+                },
+                {
+                  "disabled": false,
+                  "key": "dateEnd",
+                  "value": "<string>",
+                  "description": "Maximum creation date."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab3228b6-316a-4738-9525-79b45479ae0a",
+              "name": "Array of templates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "list",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateStart",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateEnd",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"createdAt\": \"1984-10-22T00:52:49.687Z\",\n    \"name\": \"string\",\n    \"templateId\": 7661\n  },\n  {\n    \"createdAt\": \"1964-03-15T17:22:45.598Z\",\n    \"name\": \"string\",\n    \"templateId\": 1228\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://enterprise.api.trato.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "115c1466-5ce6-4ba7-af03-40c4def0e14c",
+    "name": "TRATO Contract Contracts Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TRATO is an AI-powered Contract Lifecycle Management (CLM) and electronic signature platform. This OpenAPI description is generated from TRATO's public developer documentation (developer.trato.io) — it faithfully represents the documented Contracts and Templates operations, their paths, methods and the JWT bearer authentication. TRATO does not publish a machine-readable spec, so request/response schemas here reflect only fields documented in the reference.\n\nContact Support:\n Name: TRATO API Support",
+      "type": "text/plain"
+    }
+  }
+}
