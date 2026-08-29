@@ -17,6 +17,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "trato-contracts-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "trato-custom-properties-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "trato-participants-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "trato-spectators-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "trato-templates-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

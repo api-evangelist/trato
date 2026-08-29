@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: TRATO Contract Contracts API
   version: '2.0'
@@ -287,6 +287,14 @@ paths:
           description: Contract package.
 components:
   schemas:
+    CreateContractResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        contractid:
+          type: string
+          description: Contract identifier (MongoDB ObjectId).
     ContractStatus:
       type: object
       properties:
@@ -304,14 +312,6 @@ components:
           type: string
         externalId:
           type: string
-    CreateContractResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        contractid:
-          type: string
-          description: Contract identifier (MongoDB ObjectId).
   securitySchemes:
     bearerAuth:
       type: http
