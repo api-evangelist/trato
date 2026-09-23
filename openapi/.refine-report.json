@@ -1,11 +1,7 @@
 {
   "provider": "trato",
   "sources": [
-    "trato-contracts-api-openapi.yml",
-    "trato-custom-properties-api-openapi.yml",
-    "trato-participants-api-openapi.yml",
-    "trato-spectators-api-openapi.yml",
-    "trato-templates-api-openapi.yml"
+    "_ae-authored/trato-openapi.yml"
   ],
   "outputs": [
     "trato-contracts-api-openapi.yml",
@@ -18,12 +14,15 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "trato-contracts-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "trato-custom-properties-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "trato-participants-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "trato-spectators-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "trato-templates-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "trato-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "trato-contracts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trato-custom-properties-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trato-participants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trato-spectators-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trato-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

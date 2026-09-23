@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: TRATO Contract Contracts Participants API
+  title: TRATO Contract Participants API
   version: '2.0'
   description: TRATO is an AI-powered Contract Lifecycle Management (CLM) and electronic signature platform. This OpenAPI description is generated from TRATO's public developer documentation (developer.trato.io) — it faithfully represents the documented Contracts and Templates operations, their paths, methods and the JWT bearer authentication. TRATO does not publish a machine-readable spec, so request/response schemas here reflect only fields documented in the reference.
   contact:
