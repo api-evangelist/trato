@@ -53,8 +53,8 @@ tags:
 - Contract Lifecycle Management
 - Electronic Signature
 - Legal Tech
-- Document-Management
-- Workflow-Automation
+- Document Management
+- Workflow Automation
 - Legal
 tags_raw:
 - Company
@@ -65,6 +65,8 @@ tags_raw:
 - Document Management
 - Workflow Automation
 - Legal
+- Document-Management
+- Workflow-Automation
 image: https://trato.io
 apis:
 - aid: trato:trato-contracts-api
