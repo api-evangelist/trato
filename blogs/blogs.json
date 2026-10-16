@@ -2,6 +2,10 @@
   "repo": "trato",
   "feeds": [
     {
+      "source": "https://blog.trato.io",
+      "error": "HTTPError"
+    },
+    {
       "source": "https://developer.trato.io/",
       "feed_url": "https://developer.trato.io/",
       "title": "",
@@ -10,5 +14,5 @@
     }
   ],
   "post_count": 0,
-  "fetched": "2026-10-03T12:30:02Z"
+  "fetched": "2026-10-10T13:15:00Z"
 }
